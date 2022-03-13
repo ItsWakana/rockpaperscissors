@@ -10,33 +10,37 @@ function computerPlay() {
     }
 }
 
-function playRound(playerSelection,computerSelection) {
-    if (playerSelection === "rock" && computerSelection === "rock") {
-        console.log("Its a draw!");
-    } else if (playerSelection === "rock" && computerSelection === "paper") {
-        console.log("You lose! paper beats rock");
-    } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        console.log("Player has won! Rock beats scissors");
+function playerChoice() {
+    let playerAnswer = prompt("Rock,Paper or Scissors?");
+    return (playerAnswer);
+}
+
+
+
+function playRound(p1,c1) {
+    if (p1 === "rock" && c1 === "rock") {
+        return ("draw");
+    } else if (p1 === "rock" && c1 === "paper") {
+        return ("computer win");
+    } else if (p1 === "rock" && c1 === "scissors") {
+        return ("player win");
     } 
     
-    if (playerSelection === "paper" && computerSelection === "paper" ) {
-        console.log("Its a draw!");
-    } else if (playerSelection === "paper" && computerSelection === "rock" ) {
-        console.log("You have won! paper beats rock");
-    } else if (playerSelection === "paper" && computerSelection === "scissors" ) {
-        console.log("You lose! Scissors beats paper");
+    if (p1 === "paper" && c1 === "paper" ) {
+        return ("draw");
+    } else if (p1 === "paper" && c1 === "rock" ) {
+        return ("player win");
+    } else if (p1 === "paper" && c1 === "scissors" ) {
+        return ("computer win");
     } 
     
-    if (playerSelection === "scissors" && computerSelection === "scissors") {
-        console.log("Its a draw!");
-    } else if (playerSelection === "scissors" && computerSelection === "paper" ) {
-        console.log("You win! scissors beats paper");
-    } else if (playerSelection === "scissors" && computerSelection === "rock" ) {
-        console.log("You lose! Rock beats scissors");
+    if (p1 === "scissors" && c1 === "scissors") {
+        return ("draw");
+    } else if (p1 === "scissors" && c1 === "paper" ) {
+        return ("player win");
+    } else if (p1 === "scissors" && c1 === "rock" ) {
+        return ("computer win");
     }
 }
 
-const playerSelection = "paper";
 const computerSelection = computerPlay();
-
-console.log(playRound(playerSelection, computerSelection));
