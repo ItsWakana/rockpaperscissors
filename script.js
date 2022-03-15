@@ -43,22 +43,20 @@ function playOneRound() {
     }
 }
 
-function game(playerScore,computerScore,round) {
-    playerScore = 0;
-    computerScore = 0;
+function game() {
+    let playerScore = 0;
+    let computerScore = 0;
     for (i = 0; i < 5; i++) {
-        round = playRound()
-        if (round === "win") {
-            playerScore++; console.log("player wins!")
-        } else if (round === "lose") {
-            computerScore++; console.log("computer wins!")
-        } else if (round === "draw") {
-            console.log("Its a draw!")
+        let round = playOneRound()
+        if (round == "win") {
+            playerScore++; console.log("You win!");
+        } else if (round == "lose") {
+            computerScore++; console.log("You lose!");
+        } else if (round == "draw") {
+            console.log("It was a draw!");
         }
-        
     }
-
-    return `game has ended ${playerScore} vs ${computerScore}`;
+    return `The game is over. You scored ${playerScore} and the computer scored ${computerScore}`;
 }
 
 console.log(game());
