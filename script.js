@@ -1,3 +1,5 @@
+
+
 function computerChoice() {
     let arrayChoices = ['rock','paper','scissors']
     return arrayChoices[Math.floor(Math.random()*arrayChoices.length)];
@@ -18,34 +20,29 @@ function playerChoice() {
     }
 }
 
-function playRound() {
-    let playerSelection  = playerChoice();
-    let computerSelection = computerChoice();
-    console.log(playerSelection,computerSelection)
-    if (playerSelection === "rock" && computerSelection === "rock") {
+function playOneRound() {
+    let playerAnswer = playerChoice();
+    let computerAnswer = computerChoice();
+    console.log(`You picked ${playerAnswer} and the computer picked ${computerAnswer}`)
+    if (playerAnswer == computerAnswer) {
         return "draw";
-    } else if (playerSelection === "rock" && computerSelection === "paper") {
+    } else if (playerAnswer == "paper" && computerAnswer == "rock") {
+        return "win";
+    } else if (playerAnswer == "scissors" && computerAnswer == "paper") {
+        return "win";
+    } else if (playerAnswer == "rock" && computerAnswer == "scissors") {
+        return "win";
+    }
+
+    if (playerAnswer == "paper" && computerAnswer == "scissors") {
         return "lose";
-    } else if (playerSelection === "rock" && computerSelection === "scissors") {
-        return "win";
-    } 
-    
-    if (playerSelection === "paper" && computerSelection === "paper" ) {
-        return "draw";
-    } else if (playerSelection === "paper" && computerSelection === "rock" ) {
-        return "win";
-    } else if (playerSelection === "paper" && computerSelection === "scissors" ) {
+    } else if (playerAnswer == "scissors" && computerAnswer == "rock") {
         return "lose";
-    } 
-    
-    if (playerSelection === "scissors" && computerSelection === "scissors") {
-        return "draw";
-    } else if (playerSelection === "scissors" && computerSelection === "paper" ) {
-        return "win";
-    } else if (playerSelection === "scissors" && computerSelection === "rock" ) {
+    } else if (playerAnswer == "rock" && computerAnswer == "paper") {
         return "lose";
     }
 }
+
 function game(playerScore,computerScore,round) {
     playerScore = 0;
     computerScore = 0;
