@@ -1,21 +1,26 @@
-function computerPlay() {
-    let value = Math.floor(Math.random() * 3);
-    if (value === 0) {
-        return "rock";
-    } if (value === 1) {
-        return "paper";
-    } else if (value === 2) {
-        return "scissors";
-    }
+function computerChoice() {
+    let arrayChoices = ['rock','paper','scissors']
+    return arrayChoices[Math.floor(Math.random()*arrayChoices.length)];
 }
+
 function playerChoice() {
-    let playerAnswer = prompt("Rock,Paper or Scissors?");
-    return playerAnswer;
+    let playerInput = prompt("Rock,Paper or Scissors?");
+    if (playerInput == null || undefined) {
+        alert ("You canceled the game");
+    } 
+    let playerInputValid = playerInput.toLowerCase();
+    if (playerInputValid == "rock" || "paper" || "scissors") {
+        return playerInputValid;
+    } else {
+        alert ("That is not a valid answer");
+        let alternateAnswer = playerChoice();
+        return alternateAnswer;
+    }
 }
 
 function playRound() {
     let playerSelection  = playerChoice();
-    let computerSelection = computerPlay();
+    let computerSelection = computerChoice();
     console.log(playerSelection,computerSelection)
     if (playerSelection === "rock" && computerSelection === "rock") {
         return "draw";
