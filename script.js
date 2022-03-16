@@ -50,11 +50,12 @@ function playOneRound() {
 }
 //plays 5 rounds of the game using a loop and keeps score
 function game() {
-    let letsGame = confirm("Shall we play a best of five?");
-    if (letsGame == true) {
+    let letsGame = prompt("How many rounds do you want to play?");
+    let roundNumber = parseInt(letsGame);
+    if (roundNumber = letsGame) {
     let playerScore = 0;
     let computerScore = 0;
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < letsGame; i++) {
         let round = playOneRound()
         if (round == "win") {
             playerScore++; console.log("You win!");
@@ -71,7 +72,7 @@ function game() {
     let gameAgain = playAgain();
     return gameAgain;
     } else {
-        return "aww, why not?"
+        return "You should play at least a few rounds!"
     }
 }
 
