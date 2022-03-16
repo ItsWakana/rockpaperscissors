@@ -54,10 +54,6 @@ function game() {
     if (letsGame == true) {
     let playerScore = 0;
     let computerScore = 0;
-    // let roundCancel = playOneRound();
-    // if (roundCancel == "cancel") {
-    //     alert("You canceled the game");
-    // } else {
     for (i = 0; i < 5; i++) {
         let round = playOneRound()
         if (round == "win") {
@@ -67,14 +63,24 @@ function game() {
         } else if (round == "draw") {
             console.log("It was a draw!");
         } else if (round == "cancel") {
-            break;
+            return "you canceled the game";
         }
     }
     //returns the result at the end
-    return `The game is over. You scored ${playerScore} and the computer scored ${computerScore}`;
+    console.log(`The game is over. You scored ${playerScore} and the computer scored ${computerScore}`);
+    let gameAgain = playAgain();
+    return gameAgain;
+    } else {
+        return "aww, why not?"
     }
-    return "Don't cancel next time! Refresh the page is you want to play"
-    
 }
 
+function playAgain() {
+    let gameAgain = confirm("Would you like to play again?")
+    if (gameAgain == true) {
+        return game();
+    } else if (gameAgain == false) {
+        return "Okay! See you next time!";
+    }
+}
 console.log(game());
