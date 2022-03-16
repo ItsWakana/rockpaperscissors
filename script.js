@@ -25,7 +25,7 @@ function playerChoice() {
 function playOneRound() {
     let playerAnswer = playerChoice();
     let computerAnswer = computerChoice();
-    if (playerAnswer == "cancel") {
+    if (playerAnswer === "cancel") {
         return "cancel";
     } else {
     console.log(`You picked ${playerAnswer} and the computer picked ${computerAnswer}`)
@@ -50,13 +50,14 @@ function playOneRound() {
 }
 //plays 5 rounds of the game using a loop and keeps score
 function game() {
-    //let letsGame = prompt("Shall we play a best of five?")
+    let letsGame = confirm("Shall we play a best of five?");
+    if (letsGame == true) {
     let playerScore = 0;
     let computerScore = 0;
-    let roundCancel = playOneRound();
-    if (roundCancel == "cancel") {
-        alert("You canceled the game");
-    } else {
+    // let roundCancel = playOneRound();
+    // if (roundCancel == "cancel") {
+    //     alert("You canceled the game");
+    // } else {
     for (i = 0; i < 5; i++) {
         let round = playOneRound()
         if (round == "win") {
@@ -65,13 +66,15 @@ function game() {
             computerScore++; console.log("You lose!");
         } else if (round == "draw") {
             console.log("It was a draw!");
+        } else if (round == "cancel") {
+            break;
         }
     }
-        
     //returns the result at the end
     return `The game is over. You scored ${playerScore} and the computer scored ${computerScore}`;
     }
     return "Don't cancel next time! Refresh the page is you want to play"
+    
 }
 
 console.log(game());
