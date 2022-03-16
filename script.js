@@ -8,7 +8,6 @@ function computerChoice() {
 function playerChoice() {
     let playerInput = prompt("Rock,Paper or Scissors?");
     if (playerInput == null || playerInput == undefined) {
-        //alert ("You canceled the game");
         return "cancel";
     } 
     let playerInputValid = playerInput.toLowerCase();
@@ -52,10 +51,10 @@ function playOneRound() {
 function game() {
     let letsGame = prompt("How many rounds do you want to play?");
     let roundNumber = parseInt(letsGame);
-    if (roundNumber = letsGame) {
+    if (Number.isInteger(roundNumber)) {
     let playerScore = 0;
     let computerScore = 0;
-    for (i = 0; i < letsGame; i++) {
+    for (i = 0; i < roundNumber; i++) {
         let round = playOneRound()
         if (round == "win") {
             playerScore++; console.log("You win!");
@@ -71,8 +70,11 @@ function game() {
     console.log(`The game is over. You scored ${playerScore} and the computer scored ${computerScore}`);
     let gameAgain = playAgain();
     return gameAgain;
-    } else {
-        return "You should play at least a few rounds!"
+    } else if (letsGame == undefined) {
+        return "Canceled. You should play at least a few rounds :(";
+    } else if (isNaN(roundNumber)) {
+        console.log("Pick a number next time!")
+        return game();
     }
 }
 
