@@ -86,4 +86,4 @@ function playAgain() {
         return "Okay! See you next time!";
     }
 }
-console.log(game());
+//console.log(game());
