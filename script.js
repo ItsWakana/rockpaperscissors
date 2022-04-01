@@ -5,24 +5,45 @@ function computerChoice() {
     return arrayChoices[Math.floor(Math.random()*arrayChoices.length)];
 }
 //lets the user pick a valid option
-function playerChoice() {
-    let playerInput = prompt("Rock,Paper or Scissors?");
-    if (playerInput == null || playerInput == undefined) {
-        return "cancel";
-    } 
-    let playerInputValid = playerInput.toLowerCase();
-    if (playerInputValid == "rock" || playerInputValid == "paper" || playerInputValid == "scissors") {
-        return playerInputValid;
-    } else {
-        alert ("That is not a valid answer");
-        let alternateAnswer = playerChoice();
-        return alternateAnswer;
-    }
-}
+
+
+    const rock = document.querySelector('#rock');
+    const paper = document.querySelector('#paper');
+    const scissors = document.querySelector('#scissors');
+
+    rock.addEventListener('click', () => {
+        playOneRound("rock")
+    }, false);
+
+    paper.addEventListener('click', () => {
+        playOneRound('paper')
+    }, false);
+
+    scissors.addEventListener('click', () => {
+        playOneRound('scissors')
+    }, false);
+
+
+
+
+    
+    // let playerInput = prompt("Rock,Paper or Scissors?");
+    // if (playerInput == null || playerInput == undefined) {
+    //     return "cancel";
+    // } 
+    // let playerInputValid = playerInput.toLowerCase();
+    // if (playerInputValid == "rock" || playerInputValid == "paper" || playerInputValid == "scissors") {
+    //     return playerInputValid;
+    // } else {
+    //     alert ("That is not a valid answer");
+    //     let alternateAnswer = playerChoice();
+    //     return alternateAnswer;
+    // }
+//}
 
 //plays one round of the game
-function playOneRound() {
-    let playerAnswer = playerChoice();
+function playOneRound(answer) {
+    let playerAnswer = answer;
     let computerAnswer = computerChoice();
     if (playerAnswer === "cancel") {
         return "cancel";
@@ -86,4 +107,5 @@ function playAgain() {
         return "Okay! See you next time!";
     }
 }
-//console.log(game());
+
+
