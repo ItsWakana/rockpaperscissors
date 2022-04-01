@@ -45,10 +45,11 @@ function computerChoice() {
 function playOneRound(answer) {
     let playerAnswer = answer;
     let computerAnswer = computerChoice();
-    if (playerAnswer === "cancel") {
-        return "cancel";
-    } else {
-    console.log(`You picked ${playerAnswer} and the computer picked ${computerAnswer}`)
+    const mainDiv = document.querySelector('.result');
+    let result = document.createElement('p');
+    result.textContent = `You picked ${playerAnswer} and the computer picked ${computerAnswer}!`;
+    mainDiv.appendChild(result)
+    // console.log(`You picked ${playerAnswer} and the computer picked ${computerAnswer}`)
     if (playerAnswer == computerAnswer) {
         return "draw";
     } else if (playerAnswer == "paper" && computerAnswer == "rock") {
@@ -65,7 +66,6 @@ function playOneRound(answer) {
         return "lose";
     } else if (playerAnswer == "rock" && computerAnswer == "paper") {
         return "lose";
-    }
     }
 }
 //plays 5 rounds of the game using a loop and keeps score
