@@ -5,25 +5,29 @@ function computerChoice() {
     return arrayChoices[Math.floor(Math.random()*arrayChoices.length)];
 }
 //lets the user pick a valid option
+const playGame = document.getElementById('play-game');
+playGame.addEventListener('click', game); 
 
-
+    function game() {
+    playGame.removeEventListener('click', game);
+    playGame.classList.add('play-game');
     const rock = document.querySelector('#rock');
     const paper = document.querySelector('#paper');
     const scissors = document.querySelector('#scissors');
+    let myArray =[rock,paper,scissors];
 
-    rock.addEventListener('click', () => {
-        playOneRound("rock")
-    }, false);
+    myArray.forEach((element) => {
+        element.addEventListener('click', (e) => {
+            playOneRound(e.target.id);
+        });
+    });
+    }
 
-    paper.addEventListener('click', () => {
-        playOneRound('paper')
-    }, false);
+    function gameStart() {
+        const playGame = document.getElementById('play-game');
 
-    scissors.addEventListener('click', () => {
-        playOneRound('scissors')
-    }, false);
-
-
+        playGame.classList.add('play-game');
+    }
 
 
     
@@ -69,35 +73,35 @@ function playOneRound(answer) {
     }
 }
 //plays 5 rounds of the game using a loop and keeps score
-function game() {
-    let letsGame = prompt("How many rounds do you want to play?");
-    let roundNumber = parseInt(letsGame);
-    if (Number.isInteger(roundNumber)) {
-    let playerScore = 0;
-    let computerScore = 0;
-    for (i = 0; i < roundNumber; i++) {
-        let round = playOneRound()
-        if (round == "win") {
-            playerScore++; console.log("You win!");
-        } else if (round == "lose") {
-            computerScore++; console.log("You lose!");
-        } else if (round == "draw") {
-            console.log("It was a draw!");
-        } else if (round == "cancel") {
-            return "you canceled the game";
-        }
-    }
-    //returns the result at the end
-    console.log(`The game is over. You scored ${playerScore} and the computer scored ${computerScore}`);
-    let gameAgain = playAgain();
-    return gameAgain;
-    } else if (letsGame == undefined) {
-        return "Canceled. You should play at least a few rounds :(";
-    } else if (isNaN(roundNumber)) {
-        console.log("Pick a number next time!")
-        return game();
-    }
-}
+// function game() {
+//     let letsGame = prompt("How many rounds do you want to play?");
+//     let roundNumber = parseInt(letsGame);
+//     if (Number.isInteger(roundNumber)) {
+//     let playerScore = 0;
+//     let computerScore = 0;
+//     for (i = 0; i < roundNumber; i++) {
+//         let round = playOneRound()
+//         if (round == "win") {
+//             playerScore++; console.log("You win!");
+//         } else if (round == "lose") {
+//             computerScore++; console.log("You lose!");
+//         } else if (round == "draw") {
+//             console.log("It was a draw!");
+//         } else if (round == "cancel") {
+//             return "you canceled the game";
+//         }
+//     }
+//     //returns the result at the end
+//     console.log(`The game is over. You scored ${playerScore} and the computer scored ${computerScore}`);
+//     let gameAgain = playAgain();
+//     return gameAgain;
+//     } else if (letsGame == undefined) {
+//         return "Canceled. You should play at least a few rounds :(";
+//     } else if (isNaN(roundNumber)) {
+//         console.log("Pick a number next time!")
+//         return game();
+//     }
+// }
 
 function playAgain() {
     let gameAgain = confirm("Would you like to play again?")

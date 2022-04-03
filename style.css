@@ -16,3 +16,16 @@ body {
     border: solid black;
     text-align: center;
 }
+
+#play-game {
+    margin-right:50px;
+}
+
+.play-game {
+    color: red;
+    border-radius: 0 15px;
+}
+
+button {
+    width: 100px;
+}
