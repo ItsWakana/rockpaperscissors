@@ -19,6 +19,8 @@ const mainDiv = document.querySelector('.result');
 let result = document.querySelector('#answer');
 const gameOver = document.querySelector('#game-over');
 
+const livePlayerScore = document.querySelector('#player-score');
+const liveComputerScore = document.querySelector('#computer-score');
 
 function resetState() {
     mainDiv.removeChild(result);
@@ -36,10 +38,18 @@ function fiveRounds(e) {
             let round = playOneRound(myChoice);
             if (round == "win") {
                 playerScore++; total++; console.log("You win!");
+                livePlayerScore.textContent = `Player: ${playerScore}`;
+                liveComputerScore.textContent = `Computer: ${computerScore}`;
                 } else if (round == "lose") {
                     computerScore++; total++; console.log("You lose!");
+                    livePlayerScore.textContent = `Player: ${playerScore}`;
+                    liveComputerScore.textContent = `Computer: ${computerScore}`;
+
                 } else if (round == "draw") {
                     total++; console.log("It was a draw!");
+                    livePlayerScore.textContent = `Player: ${playerScore}`;
+                    liveComputerScore.textContent = `Computer: ${computerScore}`;
+
                 }
         } else {
             playGame.classList.remove('play-game');
