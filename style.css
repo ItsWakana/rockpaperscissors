@@ -29,3 +29,16 @@ body {
 button {
     width: 100px;
 }
+
+#game-over {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.win {
+    color:green;
+}
+
+.lose {
+    color:red;
+}

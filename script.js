@@ -5,23 +5,68 @@ function computerChoice() {
     return arrayChoices[Math.floor(Math.random()*arrayChoices.length)];
 }
 //lets the user pick a valid option
+
 const playGame = document.getElementById('play-game');
+
+
 playGame.addEventListener('click', game); 
 
+let playerScore = 0;
+let computerScore = 0;
+let total = 0;
+
+const mainDiv = document.querySelector('.result');
+let result = document.querySelector('#answer');
+const gameOver = document.querySelector('#game-over');
+
+
+function resetState() {
+    mainDiv.removeChild(result);
+    gameOver.classList.remove('win');
+    gameOver.classList.remove('lose');
+    mainDiv.removeChild(gameOver);
+    playerScore = 0;
+    computerScore = 0;
+    total = 0;
+}
+
+function fiveRounds(e) {
+        if (total < 5) {
+            let myChoice = e.target.id;
+            let round = playOneRound(myChoice);
+            if (round == "win") {
+                playerScore++; total++; console.log("You win!");
+                } else if (round == "lose") {
+                    computerScore++; total++; console.log("You lose!");
+                } else if (round == "draw") {
+                    total++; console.log("It was a draw!");
+                }
+        } else {
+            playGame.classList.remove('play-game');
+            if (playerScore > computerScore) {
+                gameOver.classList.add('win');
+            } else {
+                gameOver.classList.add('lose');
+            }
+            mainDiv.appendChild(gameOver);
+            gameOver.textContent = `The game is over. You scored ${playerScore} and the computer scored ${computerScore}`;
+            // console.log(`The game is over. You scored ${playerScore} and the computer scored ${computerScore}`);
+        }
+}
+
     function game() {
-    playGame.removeEventListener('click', game);
+    resetState();
     playGame.classList.add('play-game');
     const rock = document.querySelector('#rock');
     const paper = document.querySelector('#paper');
     const scissors = document.querySelector('#scissors');
     let myArray =[rock,paper,scissors];
-
-    myArray.forEach((element) => {
-        element.addEventListener('click', (e) => {
-            playOneRound(e.target.id);
-        });
+    myArray.forEach( (element) => {
+            element.addEventListener('click', fiveRounds);
     });
     }
+
+
 
     function gameStart() {
         const playGame = document.getElementById('play-game');
@@ -49,10 +94,8 @@ playGame.addEventListener('click', game);
 function playOneRound(answer) {
     let playerAnswer = answer;
     let computerAnswer = computerChoice();
-    const mainDiv = document.querySelector('.result');
-    let result = document.createElement('p');
     result.textContent = `You picked ${playerAnswer} and the computer picked ${computerAnswer}!`;
-    mainDiv.appendChild(result)
+    mainDiv.appendChild(result);
     // console.log(`You picked ${playerAnswer} and the computer picked ${computerAnswer}`)
     if (playerAnswer == computerAnswer) {
         return "draw";
@@ -71,7 +114,9 @@ function playOneRound(answer) {
     } else if (playerAnswer == "rock" && computerAnswer == "paper") {
         return "lose";
     }
+
 }
+
 //plays 5 rounds of the game using a loop and keeps score
 // function game() {
 //     let letsGame = prompt("How many rounds do you want to play?");
