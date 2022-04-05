@@ -26,6 +26,8 @@ const scoreDiv = document.querySelector('.score-board');
 const livePlayerScore = document.querySelector('#player-score');
 const liveComputerScore = document.querySelector('#computer-score');
 
+const picRound = document.querySelector('#pic-round');
+
 mainBox.addEventListener('mousedown', mousedown);
 
 function mousedown(e) {
@@ -64,8 +66,8 @@ function resetState() {
     gameOver.classList.remove('lose');
     mainDiv.removeChild(gameOver);
     mainDiv.removeChild(roundResult);
-    liveComputerScore.textContent = "Computer: ";
-    livePlayerScore.textContent = "Player: ";
+    liveComputerScore.textContent = "Megumin: ";
+    livePlayerScore.textContent = "You: ";
     playerScore = 0;
     computerScore = 0;
     total = 0;
@@ -75,21 +77,25 @@ function resetState() {
 function fiveRounds(e) {
         if (total < 5) {
             mainDiv.appendChild(roundResult);
+            mainDiv.appendChild(picRound);
             let myChoice = e.target.id;
             let round = playOneRound(myChoice);
             if (round == "win") {
                 playerScore++; total++; roundResult.textContent = "Round won!";
-                livePlayerScore.textContent = `Player: ${playerScore}`;
-                liveComputerScore.textContent = `Computer: ${computerScore}`;
+                picRound.src = "./images/win.png";
+                livePlayerScore.textContent = `You: ${playerScore}`;
+                liveComputerScore.textContent = `Megumin: ${computerScore}`;
                 } else if (round == "lose") {
                     computerScore++; total++; roundResult.textContent = "Round lost!";
-                    livePlayerScore.textContent = `Player: ${playerScore}`;
-                    liveComputerScore.textContent = `Computer: ${computerScore}`;
+                    picRound.src = "./images/loss.png";
+                    livePlayerScore.textContent = `You: ${playerScore}`;
+                    liveComputerScore.textContent = `Megumin: ${computerScore}`;
 
                 } else if (round == "draw") {
                     total++; roundResult.textContent = "Round draw!";
-                    livePlayerScore.textContent = `Player: ${playerScore}`;
-                    liveComputerScore.textContent = `Computer: ${computerScore}`;
+                    picRound.src = "./images/draw.png";
+                    livePlayerScore.textContent = `You: ${playerScore}`;
+                    liveComputerScore.textContent = `Megumin: ${computerScore}`;
 
                 }
         } else {
@@ -100,7 +106,7 @@ function fiveRounds(e) {
                 gameOver.classList.add('lose');
             }
             mainDiv.appendChild(gameOver);
-            gameOver.textContent = `The game is over. You scored ${playerScore} and the computer scored ${computerScore}`;
+            gameOver.textContent = `The game is over. You scored ${playerScore} and Megumin scored ${computerScore}`;
         }
 }
 
@@ -112,15 +118,30 @@ function fiveRounds(e) {
     const scissors = document.querySelector('#scissors');
     let myArray =[rock,paper,scissors];
     myArray.forEach( (element) => {
+            element.addEventListener('click', () => {
+                element.classList.add('images-down');
+            });
+            element.addEventListener('transitionend', () => {
+                element.classList.remove('images-down');
+            });
             element.addEventListener('click', fiveRounds);
+    
+            element.addEventListener('mouseover', () => {
+                element.classList.add('images');
+            });
+            element.addEventListener('mouseout', () => {
+                element.classList.remove('images');
+            });
+
     });
     }
+
 
 function playOneRound(answer) {
     let playerAnswer = answer;
     let computerAnswer = computerChoice();
 
-    result.textContent = `You picked ${playerAnswer} and the computer picked ${computerAnswer}!`;
+    result.textContent = `You picked ${playerAnswer} and Megumin picked ${computerAnswer}!`;
     mainDiv.appendChild(result);
 
     if (playerAnswer == computerAnswer) {

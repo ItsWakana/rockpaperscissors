@@ -3,36 +3,52 @@ body {
     justify-content: center;
     font-family: Arial, Helvetica, sans-serif;
     margin: 100px 100px;
-    background-color:rgb(131, 131, 165);
-    color:rgb(240, 240, 240);
+    background-color:rgb(17, 30, 44);
+    color:rgb(219, 224, 250);
 }
 
+hr {
+    color: rgb(219, 224, 250);
+}
 
+h1 {
+    display:inline-block;
+    color: rgb(219, 224, 250);
+}
 .btns {
+    padding-top:70px;
     display: flex;
     gap: 50px;
     justify-content: center;
-    height:50px;
+    padding-bottom: 12px;
 }
-
 .container {
-    display:flex;
-    flex-direction: column;
-    align-items:flex-start;
-    background-color:rgb(55, 53, 75);
+    background-color:rgb(20, 43, 70);
     padding:20px;
     border-radius: 15px;
     box-shadow: black 0px 10px 20px -8px;
     position: absolute;
+    border:solid rgb(219, 224, 250) 2px;
+    width: 650px;
+}
+
+.result {
+    padding-top: 40px;
 }
 
 #play-game {
+    background-color: rgb(219, 224, 250);
     margin-right:50px;
+    transition:all 2.1s;
+    width: 100px;
+    height: 100px;
+    padding:5px;
+    border-radius: 12px;
 }
 
 .play-game {
-    color: green;
     border-radius: 0 15px;
+    transform:scale(2.1);
 }
 
 button {
@@ -41,13 +57,36 @@ button {
     border-radius: 8px;
 }
 
+#rock,
+#paper,
+#scissors {
+    background-color: rgb(219, 224, 250);
+    transition:all 0.1s;
+    width: 100px;
+    height: 100px;
+    padding:5px;
+    border-radius: 12px;
+}
+
+.images {
+    transform:scale(1.1);
+}
+
+.images-down {
+    box-sizing: border-box;
+    border:solid rgb(99, 99, 133) 1px;
+}
+
+#pic-round {
+    width:200px;
+}
 #game-over {
     font-weight: bold;
     text-decoration: underline;
 }
 
 #round {
-    font-weight: bold;
+    font-weight: bolder;
 }
 
 .win {
@@ -56,4 +95,8 @@ button {
 
 .lose {
     color:red;
+}
+
+#answer {
+    font-size: 14px;
 }
