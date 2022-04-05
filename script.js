@@ -1,10 +1,10 @@
 
-//randomly generates a choice for the computer from the array
+
 function computerChoice() {
     let arrayChoices = ['rock','paper','scissors']
     return arrayChoices[Math.floor(Math.random()*arrayChoices.length)];
 }
-//lets the user pick a valid option
+
 
 const playGame = document.getElementById('play-game');
 
@@ -18,9 +18,11 @@ let total = 0;
 const mainDiv = document.querySelector('.result');
 let result = document.querySelector('#answer');
 const gameOver = document.querySelector('#game-over');
-
+const roundResult = document.querySelector('#round');
 const mainBox = document.querySelector('.container');
 
+
+const scoreDiv = document.querySelector('.score-board');
 const livePlayerScore = document.querySelector('#player-score');
 const liveComputerScore = document.querySelector('#computer-score');
 
@@ -54,13 +56,16 @@ function mousedown(e) {
 }
 
 function resetState() {
-    if (total < 5 ) {
+    if (total < 5) {
         return;
     } else {
     mainDiv.removeChild(result);
     gameOver.classList.remove('win');
     gameOver.classList.remove('lose');
     mainDiv.removeChild(gameOver);
+    mainDiv.removeChild(roundResult);
+    liveComputerScore.textContent = "Computer: ";
+    livePlayerScore.textContent = "Player: ";
     playerScore = 0;
     computerScore = 0;
     total = 0;
@@ -69,19 +74,20 @@ function resetState() {
 
 function fiveRounds(e) {
         if (total < 5) {
+            mainDiv.appendChild(roundResult);
             let myChoice = e.target.id;
             let round = playOneRound(myChoice);
             if (round == "win") {
-                playerScore++; total++; console.log("You win!");
+                playerScore++; total++; roundResult.textContent = "Round won!";
                 livePlayerScore.textContent = `Player: ${playerScore}`;
                 liveComputerScore.textContent = `Computer: ${computerScore}`;
                 } else if (round == "lose") {
-                    computerScore++; total++; console.log("You lose!");
+                    computerScore++; total++; roundResult.textContent = "Round lost!";
                     livePlayerScore.textContent = `Player: ${playerScore}`;
                     liveComputerScore.textContent = `Computer: ${computerScore}`;
 
                 } else if (round == "draw") {
-                    total++; console.log("It was a draw!");
+                    total++; roundResult.textContent = "Round draw!";
                     livePlayerScore.textContent = `Player: ${playerScore}`;
                     liveComputerScore.textContent = `Computer: ${computerScore}`;
 

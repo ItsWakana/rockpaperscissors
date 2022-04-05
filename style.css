@@ -38,11 +38,16 @@ body {
 button {
     width: 100px;
     color:rgb(41, 39, 54);
+    border-radius: 8px;
 }
 
 #game-over {
     font-weight: bold;
     text-decoration: underline;
+}
+
+#round {
+    font-weight: bold;
 }
 
 .win {
