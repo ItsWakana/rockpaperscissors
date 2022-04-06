@@ -28,6 +28,9 @@ const liveComputerScore = document.querySelector('#computer-score');
 
 const picRound = document.querySelector('#pic-round');
 
+const buttons = document.querySelector('.btns');
+const explosion = document.querySelector('#explosion');
+
 mainBox.addEventListener('mousedown', mousedown);
 
 function mousedown(e) {
